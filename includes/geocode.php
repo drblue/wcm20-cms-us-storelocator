@@ -25,8 +25,14 @@ function wcmsl_geocode($address, $city) {
 	$query = GeocodeQuery::create("{$address}, {$city}");
 	$result = $geocoder->geocodeQuery($query);
 
+	if ($result->isEmpty()) {
+		return false;
+	}
+
+	$coords = $result->first()->getCoordinates();
+
 	return [
-		'lat' => '',
-		'lng' => '',
+		'lat' => $coords->getLatitude(),
+		'lng' => $coords->getLongitude(),
 	];
 }
