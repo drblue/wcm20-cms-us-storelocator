@@ -1,0 +1,14 @@
+{
+    "name": "wcm20/storelocator",
+    "authors": [
+        {
+            "name": "Johan Nordström",
+            "email": "johan@digitalvillage.se"
+        }
+    ],
+    "require": {
+        "geocoder-php/google-maps-provider": "^4.6",
+        "php-http/guzzle6-adapter": "^2.0",
+        "nyholm/psr7": "^1.4"
+    }
+}

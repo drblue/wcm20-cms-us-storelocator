@@ -15,9 +15,12 @@ define('WCMSL_PLUGIN_URL', plugin_dir_url(__FILE__));
 /**
  * Include dependencies.
  */
+require_once(WCMSL_PLUGIN_DIR . 'vendor/autoload.php');
+
 require_once(WCMSL_PLUGIN_DIR . 'includes/cpt.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/ct.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/acf-loader.php');
+require_once(WCMSL_PLUGIN_DIR . 'includes/geocode.php');
 
 require_once(WCMSL_PLUGIN_DIR . 'includes/functions.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/options.php');
