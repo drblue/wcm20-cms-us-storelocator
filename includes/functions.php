@@ -50,3 +50,26 @@ function wcmsl_load_textdomain($mofile, $domain) {
 	return $mofile;
 }
 add_filter('load_textdomain_mofile', 'wcmsl_load_textdomain', 10, 2);
+
+/**
+ * Hook into when a store is saved and look up lat/lng if needed.
+ *
+ * @param integer $post_id
+ * @param WP_Post $post
+ * @param boolean $updated
+ * @return void
+ */
+function wcmsl_save_post(int $post_id, WP_Post $post, bool $updated) {
+	$latitude = get_field('position_latitude', $post_id, false);
+	$longitude = get_field('position_longitude', $post_id, false);
+
+	if (!empty($latitude) && !empty($longitude)) {
+		return;
+	}
+
+	// No latitude or longitude set, do geocoding of address
+	$address = get_field('address', $post_id, false);
+	$city = get_field('city', $post_id, false);
+
+}
+add_action('save_post_wcmsl_store', 'wcmsl_save_post', 10, 3);
