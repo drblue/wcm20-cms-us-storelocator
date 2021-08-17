@@ -71,5 +71,7 @@ function wcmsl_save_post(int $post_id, WP_Post $post, bool $updated) {
 	$address = get_field('address', $post_id, false);
 	$city = get_field('city', $post_id, false);
 
+	$maps_api_key = get_field('google_maps_api_key', 'option');
+
 }
 add_action('save_post_wcmsl_store', 'wcmsl_save_post', 10, 3);
