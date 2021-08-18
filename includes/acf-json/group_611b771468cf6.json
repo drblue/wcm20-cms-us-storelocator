@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_611b77292462d",
-            "label": "Address",
+            "label": "Street Address",
             "name": "address",
             "type": "text",
             "instructions": "Enter the street address and number for the store.",
@@ -41,10 +41,10 @@
             "maxlength": ""
         },
         {
-            "key": "field_611b778c2462f",
-            "label": "Position",
-            "name": "position",
-            "type": "group",
+            "key": "field_611c2dbe9b8bf",
+            "label": "Latitude",
+            "name": "latitude",
+            "type": "number",
             "instructions": "This will be automatically looked up based on the street address and city upon save.",
             "required": 0,
             "conditional_logic": 0,
@@ -53,51 +53,34 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_611b77a224630",
-                    "label": "Latitude",
-                    "name": "latitude",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
-                },
-                {
-                    "key": "field_611b77f124631",
-                    "label": "Longitude",
-                    "name": "longitude",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
-                }
-            ]
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_611c2ddf9b8c0",
+            "label": "Longitude",
+            "name": "longitude",
+            "type": "number",
+            "instructions": "This will be automatically looked up based on the street address and city upon save.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         }
     ],
     "location": [
@@ -117,5 +100,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1629191998
+    "modified": 1629272058
 }
