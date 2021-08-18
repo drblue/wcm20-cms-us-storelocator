@@ -29,6 +29,7 @@ require_once(WCMSL_PLUGIN_DIR . 'includes/ct.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/acf-loader.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/geocode.php');
 
+require_once(WCMSL_PLUGIN_DIR . 'includes/ajax.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/functions.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/shortcodes.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/options.php');

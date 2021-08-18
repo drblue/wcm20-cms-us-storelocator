@@ -4,7 +4,7 @@ function initMap() {
 	console.log("init google maps plz");
 
 	storeLocatorMap = new google.maps.Map(document.getElementById("wcmsl-map"), {
-		center: { lat: 55.6811309, lng: 13.6487008 },
+		center: { lat: 55.8341539, lng: 13.6714464 },
 		zoom: 8,
 	});
 
