@@ -1,0 +1,9 @@
+/**
+ * Styles for WCM20 Store Locator Plugin
+ */
+
+#wcmsl-map {
+	background-color: #ccc;
+	min-height: 67vh;
+	width: 100%;
+}

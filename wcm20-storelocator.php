@@ -12,6 +12,8 @@
 define('WCMSL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WCMSL_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+define('WCMSL_SHORTCODE_STORELOCATOR', 'storelocator');
+
 define('WCMSL_ACF_ADDRESS_FIELD', 'field_611b77292462d');
 define('WCMSL_ACF_CITY_FIELD', 'field_611b77672462e');
 define('WCMSL_ACF_LATITUDE_FIELD', 'field_611c2dbe9b8bf');
@@ -28,4 +30,5 @@ require_once(WCMSL_PLUGIN_DIR . 'includes/acf-loader.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/geocode.php');
 
 require_once(WCMSL_PLUGIN_DIR . 'includes/functions.php');
+require_once(WCMSL_PLUGIN_DIR . 'includes/shortcodes.php');
 require_once(WCMSL_PLUGIN_DIR . 'includes/options.php');

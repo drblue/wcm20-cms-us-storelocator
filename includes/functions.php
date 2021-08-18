@@ -12,14 +12,36 @@ if (!function_exists('pre')) {
 	}
 }
 
+/**
+ * Return Google Maps API Key from the plugin settings.
+ *
+ * @return string|null
+ */
+function wcmsl_get_google_maps_api_key() {
+	return get_field('google_maps_api_key', 'option');
+}
+
+/**
+ * Enqueue CSS and JavaScript
+ *
+ * @return void
+ */
 function wcmsl_enqueue_styles() {
+	// Load plugin styles
 	wp_enqueue_style('wcm20-storelocator-styles', WCMSL_PLUGIN_URL . "assets/css/wcm20-storelocator.css", [], "0.1", "screen");
 
+	// Load plugin script
 	wp_enqueue_script('wcm20-storelocator', WCMSL_PLUGIN_URL . "assets/js/wcm20-storelocator.js", [], "0.1", true);
 	wp_localize_script('wcm20-storelocator', 'wcmsl_settings', [
 		'ajax_url' => admin_url('admin-ajax.php'),
 		'messages' => [],
 	]);
+
+	// Load Google Maps JavaScript library
+	$google_maps_api_key = wcmsl_get_google_maps_api_key();
+	if ($google_maps_api_key) {
+		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $google_maps_api_key . '&callback=initMap', [], false, true);
+	}
 }
 add_action('wp_enqueue_scripts', 'wcmsl_enqueue_styles');
 

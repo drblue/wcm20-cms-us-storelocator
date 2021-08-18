@@ -13,7 +13,7 @@ use Geocoder\Query\GeocodeQuery;
  * @return array
  */
 function wcmsl_geocode($address, $city) {
-	$google_maps_api_key = get_field('google_maps_api_key', 'option');
+	$google_maps_api_key = wcmsl_get_google_maps_api_key();
 	if (!$google_maps_api_key) {
 		return false;
 	}
