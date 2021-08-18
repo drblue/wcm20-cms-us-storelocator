@@ -52,27 +52,35 @@ function wcmsl_load_textdomain($mofile, $domain) {
 add_filter('load_textdomain_mofile', 'wcmsl_load_textdomain', 10, 2);
 
 /**
- * Hook into when a store is saved and look up lat/lng if needed.
+ * Hook into when a field group for a store is saved.
  *
- * @param integer $post_id
- * @param WP_Post $post
- * @param boolean $updated
+ * Look up latitude/longitude from address if not set.
+ *
+ * @param int $post_id
  * @return void
  */
-function wcmsl_save_post(int $post_id, WP_Post $post, bool $updated) {
-	$latitude = get_field('position_latitude', $post_id, false);
-	$longitude = get_field('position_longitude', $post_id, false);
-
-	if (!empty($latitude) && !empty($longitude)) {
+function wcmsl_acf_save_post($post_id) {
+	// 👨🏻‍⚖️ Bail if it's not a store that's being saved
+	if (get_post_type($post_id) !== 'wcmsl_store') {
 		return;
 	}
 
-	// No latitude or longitude set, do geocoding of address
-	$address = get_field('address', $post_id, false);
-	$city = get_field('city', $post_id, false);
+	// We're sure it's a store
+	$address = $_POST['acf'][WCMSL_ACF_ADDRESS_FIELD];
+	$city = $_POST['acf'][WCMSL_ACF_CITY_FIELD];
+	$latitude = $_POST['acf'][WCMSL_ACF_LATITUDE_FIELD];
+	$longitude = $_POST['acf'][WCMSL_ACF_LONGITUDE_FIELD];
 
+	// If not latitude nor longitude is empty, do nothing
+	if (!(empty($latitude) || empty($longitude))) {
+		return;
+	}
+
+	// No latitude or longitude is set, do geocoding of address + city
 	$pos = wcmsl_geocode($address, $city);
-	// update post with $pos['lat'] and $pos['lng']
-
+	if ($pos !== false && is_array($pos)) {
+		$_POST['acf'][WCMSL_ACF_LATITUDE_FIELD] = $pos['lat'];
+		$_POST['acf'][WCMSL_ACF_LONGITUDE_FIELD] = $pos['lng'];
+	}
 }
-add_action('save_post_wcmsl_store', 'wcmsl_save_post', 10, 3);
+add_action('acf/save_post', 'wcmsl_acf_save_post', 5);
