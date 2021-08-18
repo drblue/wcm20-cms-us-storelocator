@@ -1,4 +1,5 @@
 let storeLocatorMap = null;
+let storeLocatorMarkers = [];
 
 function initMap() {
 	console.log("init google maps plz");
@@ -8,13 +9,39 @@ function initMap() {
 		zoom: 8,
 	});
 
-	markerEmporia = new google.maps.Marker({
-		position: { lat: 55.563615, lng: 12.974616 },
-		map: storeLocatorMap,
-	});
+	// get stores from WordPress and add them to the map
+	getStores();
+}
 
-	markerVala = new google.maps.Marker({
-		position: { lat: 56.091522, lng: 12.757102 },
-		map: storeLocatorMap,
+function getStores() {
+	const ajax_url = wcmsl_settings.ajax_url;
+
+	// fetch dem markers
+	fetch(ajax_url + '?action=wcmsl_get_stores')
+		.then(res => res.json())
+		.then(res => {
+			console.log("Got stores?", res);
+
+			if (res.success) {
+				// add stores to map
+				addStoresToMap(res.data);
+			} else {
+				alert('Failed to get stores from database, sorry');
+			}
+		});
+}
+
+function addStoresToMap(stores) {
+	stores.forEach(store => {
+		let marker = new google.maps.Marker({
+			position: {
+				lat: store.latitude,
+				lng: store.longitude
+			},
+			map: storeLocatorMap,
+			title: store.name,
+		});
+
+		storeLocatorMarkers.push(marker);
 	});
 }
